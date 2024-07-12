@@ -3,21 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+import Scene1 from '../components/threejs/Scene1.astro';
 ---
 
-<BaseLayout title="About | Grace Estefania" description="Grace Estefania">
+<BaseLayout title="Editor |Crear " description="Grace Estefania">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+				title="Crea y modifica"
+				tagline="Aplica lo aprendido y experimenta con matemáticas."
 			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/grace.jpg"
-					alt="Jeanine White at work with a colleague"
-				/>
+				<div class="editable">
+					<Scene1/>
+				</div>
 			</Hero>
 
 			<section>
@@ -52,12 +50,10 @@ import Hero from '../components/Hero.astro';
 			<section>
 				<h2 class="section-title">Skills</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<p>arte y matemáticas</p>
 				</div>
 			</section>
 		</main>
-
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -66,6 +62,14 @@ import Hero from '../components/Hero.astro';
 		display: flex;
 		flex-direction: column;
 		gap: 3.5rem;
+	}
+
+	.editable {
+		width: 100%;
+		height: 873px;
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
 	}
 
 	img {
