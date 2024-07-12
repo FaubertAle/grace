@@ -1,0 +1,22 @@
+
+
+<div id="scene">
+
+</div>
+<script>
+    import threeScene from '../../utils/threeScene';
+
+    const canvas = document.getElementById('scene');
+    if (canvas != null){
+        const scene: threeScene = new threeScene(canvas);
+        scene.animate();
+    }
+</script>
+<style>
+    #scene{
+        width: 80%;
+        height: 400px;
+        border: solid 2px white;
+        border-radius: 20px;
+    }
+</style>
