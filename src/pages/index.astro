@@ -9,6 +9,7 @@ import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import Scene1 from '../components/threejs/Scene1.astro';
+import Sc2 from '../components/threejs/Sc2.astro';
 
 // Page section components
 import Skills from '../components/Skills.astro';
@@ -27,25 +28,21 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Grace Peñafiel"
-					tagline="I am a Toxic Creative Developer who is currently based in Quito."
+					title="Hola!, ART Shading es un proyecto creativo "
+					tagline="Enfocado a descifrar la intrincada dualidad que yace entre dos disciplinas aparentemente dispares: el arte y las matemáticas. Orientado para... "
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+						<Pill><Icon icon="code" size="1.33em" /> Desarrolladores</Pill>
+						<Pill><Icon icon="pencil-line" size="1.33em" /> Artistas</Pill>
+						<Pill><Icon icon="trophy" size="1.33em" /> Estudiantes</Pill>
 					</div>
 				</Hero>
-
-				<img
-					alt="Grace en un salon otaku"
-					width="480"
-					height="620"
-					src="/assets/grace.jpg"
-				/>
+				<div class="viewport">
+					<!-- <Scene1/> -->
+					<Sc2/>
+				</div>
 			</header>
-			<Scene1/>
 			<Skills />
 		</div>
 		
@@ -70,6 +67,11 @@ const projects = (await getCollection('work'))
 		object-position: top;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
+	}
+	.viewport {
+		width: 480px;
+		height: 620px;
+		border-radius: 10px;
 	}
 
 	@media (min-width: 50em) {
