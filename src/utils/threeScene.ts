@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export default class threeScene {
     
@@ -16,11 +16,26 @@ export default class threeScene {
     _geometry: THREE.BufferGeometry;
     _material: THREE.Material;
     _mesh: THREE.Mesh;
+    _model: THREE.BufferGeometry;
+
+    //Loaders
+    _loader: THREE.GLTFLoader;
 
     constructor(canvas: HTMLElement){
         this._canvas = canvas;
         this._aspect = canvas.clientWidth / canvas.clientHeight;
         this._scene = new THREE.Scene();
+
+        this._scene.background = new THREE.CubeTextureLoader()
+        .setPath("/assets/textures/cubeMaps/")
+        .load([
+            "posx.jpg",
+            "negx.jpg",
+            "posy.jpg",
+            "negy.jpg",
+            "posz.jpg",
+            "negz.jpg",
+        ]);
 
         this._camera = new THREE.PerspectiveCamera(
             45,
@@ -29,15 +44,32 @@ export default class threeScene {
             5
         );
         this._camera.position.z = 3.5;
-
-        this._geometry = new THREE.BoxGeometry(1, 1, 1);
         this._material = new THREE.MeshBasicMaterial(
-            {color: 0xf242f2}
+            {color: 0x1242f2}
         );
 
-        this._mesh = new THREE.Mesh(this._geometry,this._material);
+        this._loader = new GLTFLoader();
+        this._loader.load(
+            "/assets/models/planoInclinado.glb",
+            (gltf) => {
+            //   gltf.scene.scale.set(.1, .1, .1);
+
+              this._model = gltf.scene.children[0].geometry;
+              this._mesh = new THREE.Mesh(this._model,this._material);
+              this._scene.add(this._mesh);
+            },
+            undefined,
+            function (error) {
+              console.error(error);
+            }
+        );
+
+        // this._geometry = new THREE.BoxGeometry(1, 1, 1);
+        // this._geometry = this._model;
+
+        // this._mesh = new THREE.Mesh(this._geometry,this._material);
         this._scene.add(this._camera);
-        this._scene.add(this._mesh);
+        // this._scene.add(this._mesh);
         this._scene.add(this._camera);
 
         this._renderer = new THREE.WebGLRenderer(
