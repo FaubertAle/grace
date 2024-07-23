@@ -7,12 +7,15 @@
 <script>
   import * as monaco from "monaco-editor";
   const editor = document.getElementById("code-editor");
+  const value = `function hello() {
+	alert('Hello world!');
+  }`;
+  
   if (editor != null) {
     monaco.editor.create(editor, {
-      value: ["function x() {", '\tconsole.log("Hello world!");', "}"].join(
-        "\n"
-      ),
+      value,
       language: "javascript",
+      automaticLayout: true,
     });
   }
 </script>
