@@ -1,0 +1,24 @@
+---
+
+---
+
+<div id="code-editor"></div>
+
+<script>
+  import * as monaco from "monaco-editor";
+  const editor = document.getElementById("code-editor");
+  if (editor != null) {
+    monaco.editor.create(editor, {
+      value: ["function x() {", '\tconsole.log("Hello world!");', "}"].join(
+        "\n"
+      ),
+      language: "javascript",
+    });
+  }
+</script>
+<style>
+    #code-editor {
+        width: 800px;
+        height: 200px;
+    }
+</style>
